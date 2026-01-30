@@ -1,0 +1,33 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18.17.0
+  pre_build:
+    commands:
+      - echo installing dependencies
+      #      - export NODE_OPTIONS=--openssl-legacy-provider
+      - npm install --legacy-peer-deps
+  build:
+    commands:
+      - echo Compiling and Building NodeJS Code
+      - npm run build
+      - echo '--------------NPM Build completed successfully-------------'
+  post_build:
+    commands:
+      - echo Last back up is started cleaning.
+      - aws s3 rm s3://softsages-static-website-backup/tavisi.softsages.com/ --recursive
+      - aws s3 mv s3://tavisi.softsages.com/ s3://softsages-static-website-backup/tavisi.softsages.com/ --recursive
+      - echo Last back up cleaning completed.
+      - echo "-----------**********--------------"
+      - echo Copying new built static site to destination bucket
+      - aws s3 cp out/ s3://tavisi.softsages.com/ --recursive
+      - echo "-----------Migration completed successfully-------------"
+artifacts:
+  baseDirectory: .next
+  files:
+    - "**/*"
+cache:
+  paths:
+    - ".next/cache/**/*"
+    - "node_modules/**/*"
