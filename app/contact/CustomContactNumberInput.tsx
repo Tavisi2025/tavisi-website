@@ -19,7 +19,7 @@ import {
   usePhoneInput,
 } from 'react-international-phone';
 
-export interface CustomContactNumberInputProps extends BaseTextFieldProps {
+export interface CustomContactNumberInputProps extends Omit<BaseTextFieldProps, 'error'> {
   label?: string;
   value: string;
   placeHolder?: string;

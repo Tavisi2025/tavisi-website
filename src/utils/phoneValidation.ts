@@ -1,6 +1,4 @@
-// Uses google-libphonenumber for validation (PhoneNumberUtil.getInstance())
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const PhoneNumberUtil = require('google-libphonenumber').PhoneNumberUtil;
+import { PhoneNumberUtil } from "google-libphonenumber";
 
 export const isPhoneValid = (phone: string): boolean => {
   try {
