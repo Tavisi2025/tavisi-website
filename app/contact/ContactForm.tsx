@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -14,16 +14,31 @@ import { CustomContactNumberInput } from './CustomContactNumberInput';
 
 const MESSAGE_MAX = 120;
 
+const CONTACT_API_URL =
+  'https://script.google.com/macros/s/AKfycbyI-Z1CVYuNxCj9O5OeQAK8YHzGtJgv_R-MyTJ5RIDQ43ybJSdyWNm5WXEcfsDxGVyzmw/exec';
+
+function getDateAndTimeString(): string {
+  const d = new Date();
+  return d.toISOString();
+}
+
 export function ContactForm() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
   const formRef = useRef<HTMLFormElement>(null);
+  const hideSuccessTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    return () => {
+      if (hideSuccessTimeoutRef.current) clearTimeout(hideSuccessTimeoutRef.current);
+    };
+  }, []);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPhoneError('');
 
@@ -33,14 +48,39 @@ export function ContactForm() {
       return;
     }
 
+    const form = formRef.current;
+    if (!form) return;
+
+    const firstName = (form.elements.namedItem('firstName') as HTMLInputElement)?.value ?? '';
+    const lastName = (form.elements.namedItem('lastName') as HTMLInputElement)?.value ?? '';
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value ?? '';
+
     setStatus('sending');
-    setTimeout(() => {
+
+    const params = new URLSearchParams({
+      firstName,
+      lastName,
+      email,
+      contactNumber: trimmedPhone,
+      description: message.trim(),
+      date: getDateAndTimeString(),
+    });
+
+    try {
+      const res = await fetch(`${CONTACT_API_URL}?${params.toString()}`, {
+        method: 'POST',
+        mode: 'no-cors',
+      });
       setStatus('sent');
       setPhone('');
       setMessage('');
       setPhoneError('');
-      formRef.current?.reset();
-    }, 800);
+      form.reset();
+      if (hideSuccessTimeoutRef.current) clearTimeout(hideSuccessTimeoutRef.current);
+      hideSuccessTimeoutRef.current = setTimeout(() => setStatus('idle'), 10000);
+    } catch {
+      setStatus('error');
+    }
   }
 
   return (
@@ -108,6 +148,7 @@ export function ContactForm() {
             }}
             placeHolder="Phone number"
             error={phoneError || undefined}
+            required
             inputProps={{
               id: 'contact-phone',
               name: 'phone',
@@ -154,7 +195,7 @@ export function ContactForm() {
               '@media (prefers-reduced-motion: reduce)': { '&:hover': { transform: 'none' } },
             }}
           >
-            {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Message sent' : 'Submit'}
+            {status === 'sending' ? 'Sending…' : 'Submit'}
           </Button>
 
           {status === 'sent' && (
