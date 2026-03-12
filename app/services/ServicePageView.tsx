@@ -10,7 +10,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Section } from '@/components/common';
 import type { ServiceItem } from './data';
-import { Grid } from '@mui/material';
 
 export function ServicePageView({
   gtmItems,
