@@ -2,6 +2,7 @@
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -15,13 +16,13 @@ export function ServicePageView({
   salesOpsItems,
   commercialExecItems,
   summaryBullets,
-  sapSteps,
+  advisoryFramework,
 }: {
   gtmItems: ServiceItem[];
   salesOpsItems: ServiceItem[];
   commercialExecItems: ServiceItem[];
   summaryBullets: string[];
-  sapSteps: string[];
+  advisoryFramework: ServiceItem[];
 }) {
   return (
     <>
@@ -311,30 +312,74 @@ export function ServicePageView({
       </Box>
     </Section>
 
-    {/* SAP Advisory */}
-    <Section title="SAP Advisory" overline="SAP S/4 MIGRATION">
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.75, maxWidth: 900 }}>
-        Advisory services available to better manage your SAP S/4HANA Public and Private Cloud migration. We will
-        assess the current as-is and provide best practices guidance on the to-be model.
-      </Typography>
+      <Section title="ERP Advisory" overline="ERP MIGRATION">
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          sx={{ mb: 4, lineHeight: 1.75, maxWidth: 900 }}
+        >
+          Advisory services to support enterprise platform transformation and
+          cloud ERP modernization, including SAP S/4HANA.We analyze the current
+          operating model, technology landscape, and planning processes, then
+          design a future-state architecture that improves operational
+          efficiency, planning visibility, and revenue execution.
+        </Typography>
 
-      <Typography variant="h6" sx={{ fontWeight: 700, color: 'text.primary', mb: 2 }}>
-        Cost Effective Steps
-      </Typography>
-      <Box
-        component="ul"
-        sx={{
-          m: 0,
-          pl: 2.5,
-          '& li': { color: 'text.secondary', mb: 0.75, typography: 'body2', lineHeight: 1.7 },
-        }}
-      >
-        {sapSteps.map((step, i) => (
-          <li key={i}>{step}</li>
-        ))}
-      </Box>
-    </Section>
+        <Typography
+          variant="h6"
+          sx={{ fontWeight: 700, color: "text.primary", mb: 4 }}
+        >
+          Tavisi Platform Transformation Advisory Framework
+        </Typography>
+
+        <Grid container spacing={6}>
+          {advisoryFramework.map((item, index) => (
+            <Grid item xs={12} md={6} key={index}>
+              <Box sx={{ display: "flex", gap: 3 }}>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: "text.disabled",
+                    lineHeight: 1.2,
+                    flexShrink: 0,
+                    minWidth: 40,
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </Typography>
+
+                <Box sx={{ flex: 1 }}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ fontWeight: 700, mb: 1 }}
+                  >
+                    {item.title}
+                  </Typography>
+
+                  <Box
+                    component="ul"
+                    sx={{
+                      m: 0,
+                      pl: 2,
+                      "& li": {
+                        color: "text.secondary",
+                        mb: 0.5,
+                        typography: "body2",
+                        lineHeight: 1.6,
+                      },
+                    }}
+                  >
+                    {item.bullets.map((b, j) => (
+                      <li key={j}>{b}</li>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Section>
     </>
   );
 }
-

@@ -148,71 +148,126 @@ export const SALES_OPS_ITEMS: ServiceItem[] = [
 
 export const COMMERCIAL_EXEC_ITEMS: ServiceItem[] = [
   {
-    title: 'Revenue Process Design',
+    title: "Revenue Process Design",
     bullets: [
-      'Lead-to-cash process mapping',
-      'Alignment across Sales, Marketing, Finance, and Customer Success',
-      'Handoff and SLA definition',
-      'Deal approval and governance models',
+      "Lead-to-cash process mapping",
+      "Alignment across Sales, Marketing, Finance, and Customer Success",
+      "Handoff and SLA definition",
+      "Deal approval and governance models",
     ],
   },
   {
-    title: 'Pricing & Packaging Strategy',
+    title: "Pricing & Packaging Strategy",
     bullets: [
-      'Pricing structure and discount frameworks',
-      'Packaging and bundling strategies',
-      'Deal desk design and enablement',
-      'Margin protection and approval workflows',
+      "Pricing structure and discount frameworks",
+      "Packaging and bundling strategies",
+      "Deal desk design and enablement",
+      "Margin protection and approval workflows",
     ],
   },
   {
-    title: 'Sales Enablement & Execution Readiness',
+    title: "Sales Enablement & Execution Readiness",
     bullets: [
-      'Playbooks and messaging frameworks',
-      'ICP and persona definition',
-      'Competitive positioning',
-      'Sales onboarding and ramp frameworks',
+      "Playbooks and messaging frameworks",
+      "ICP and persona definition",
+      "Competitive positioning",
+      "Sales onboarding and ramp frameworks",
     ],
   },
   {
-    title: 'Go-To-Market Execution Support',
+    title: "Go-To-Market Execution Support",
     bullets: [
-      'GTM launch execution',
-      'New product or market rollout',
-      'Partner/channel execution models',
-      'Field execution cadence (QBRs, MBRs)',
+      "GTM launch execution",
+      "New product or market rollout",
+      "Partner/channel execution models",
+      "Field execution cadence (QBRs, MBRs)",
     ],
   },
   {
-    title: 'Sales Cadence & Operating Rhythm',
+    title: "Sales Cadence & Operating Rhythm",
     bullets: [
-      'Weekly/monthly execution cadence',
-      'Pipeline reviews and forecast calls',
-      'Performance management frameworks',
-      'Leadership operating dashboards',
+      "Weekly/monthly execution cadence",
+      "Pipeline reviews and forecast calls",
+      "Performance management frameworks",
+      "Leadership operating dashboards",
     ],
   },
   {
-    title: 'Revenue Predictability & Scale Readiness',
+    title: "Revenue Predictability & Scale Readiness",
     bullets: [
-      'Process maturity assessments',
-      'Scaling readiness for growth-stage companies',
-      'International or multi-segment expansion support',
-      'Pre-fundraising or pre-exit sales infrastructure',
+      "Process maturity assessments",
+      "Scaling readiness for growth-stage companies",
+      "International or multi-segment expansion support",
+      "Pre-fundraising or pre-exit sales infrastructure",
     ],
   },
 ];
 
-export const SAP_ADVISORY_STEPS = [
-  'Start with a Business-First Migration Hypothesis (not tech-first)',
-  'Run a Lean System & Process Assessment (4–6 weeks max)',
-  'Custom Code Rationalization — Kill Before You Migrate',
-  'Choose Public vs Private Cloud with a Decision Framework',
-  'Define a Phased Migration Path (Not Big Bang)',
-  'Push for RISE with SAP – But Negotiate Hard',
-  'Build a Minimum Viable S/4 (MVS/“Fit-to-Standard”)',
-  'Set Up Strong Governance from Day 0',
-  'Recommend Automation Early (Testing & Data)',
-  'Current Support Model (Reactive vs Proactive)',
+export const ADVISORY_FRAMEWORK: ServiceItem[] = [
+  {
+    title: "Start with a Business-First Transformation Hypothesis",
+    bullets: [
+      "Define the business outcomes the platform must enable (operational efficiency, planning visibility, revenue scale, cost reduction) before selecting or migrating technology.",
+    ],
+  },
+  {
+    title: "Run a Lean System & Process Diagnostic (4–6 weeks)",
+    bullets: [
+      "Assess the current operating model, system landscape, and process dependencies to identify transformation priorities and risk areas.",
+    ],
+  },
+  {
+    title: "Application & Customization Rationalization",
+    bullets: [
+      "Evaluate existing custom logic, integrations, and extensions to determine what should be retired, modernized, or standardized before migration.",
+    ],
+  },
+  {
+    title: "Cloud Platform & Deployment Strategy",
+    bullets: [
+      "Use a structured decision framework to determine the optimal deployment model:",
+      "Public cloud",
+      "Private cloud",
+      "Hybrid architecture",
+    ],
+  },
+  {
+    title: "Define a Phased Transformation Roadmap",
+    bullets: [
+      "Avoid high-risk 'big bang' migrations. Establish a phased modernization path aligned with business priorities.",
+    ],
+  },
+  {
+    title: "Commercial & Vendor Strategy",
+    bullets: [
+      "Ensure the platform program is financially optimized, including vendor negotiation, licensing strategy, and commercial alignment.",
+    ],
+  },
+  {
+    title: "Minimum Viable Enterprise Platform",
+    bullets: [
+      "Define a fit-to-standard core platform that enables faster deployment while reducing unnecessary complexity.",
+    ],
+  },
+  {
+    title: "Governance & Program Architecture",
+    bullets: [
+      "Establish decision governance, architectural standards, and transformation KPIs from day one.",
+    ],
+  },
+  {
+    title: "Automation & Data Readiness",
+    bullets: [
+      "Introduce automation early across:",
+      "Testing",
+      "Data migration",
+      "Integration orchestration",
+    ],
+  },
+  {
+    title: "Operating Model & Support Transformation",
+    bullets: [
+      "Redesign the post-implementation support model to move from reactive IT support to proactive platform operations and continuous optimization.",
+    ],
+  },
 ];
-
