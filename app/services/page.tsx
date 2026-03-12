@@ -4,7 +4,7 @@ import {
   SALES_OPS_ITEMS,
   COMMERCIAL_EXEC_ITEMS,
   SUMMARY_BULLETS,
-  SAP_ADVISORY_STEPS,
+    ADVISORY_FRAMEWORK,
 } from "./data";
 import { ServicePageView } from "./ServicePageView";
 
@@ -23,7 +23,7 @@ export default function ServicesPage() {
         salesOpsItems={SALES_OPS_ITEMS}
         commercialExecItems={COMMERCIAL_EXEC_ITEMS}
         summaryBullets={SUMMARY_BULLETS}
-        sapSteps={SAP_ADVISORY_STEPS}
+        advisoryFramework={ADVISORY_FRAMEWORK}
       />
       <CTABand
         title="Accelerate your GTM execution"

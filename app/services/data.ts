@@ -202,7 +202,6 @@ export const COMMERCIAL_EXEC_ITEMS: ServiceItem[] = [
     ],
   },
 ];
-
 export const ADVISORY_FRAMEWORK: ServiceItem[] = [
   {
     title: "Start with a Business-First Transformation Hypothesis",
