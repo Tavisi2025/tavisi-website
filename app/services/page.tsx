@@ -9,7 +9,7 @@ import {
 import { ServicePageView } from "./ServicePageView";
 
 export const metadata = {
-  title: "Services | Accordion Layout | Tavisi Partners",
+  title: "Services | Tavisi Partners",
   description:
     "All services: Go-To-Market Strategy & Design, Sales Operations, Commercial Execution, and SAP Advisory - presented in accordion layout.",
 };
