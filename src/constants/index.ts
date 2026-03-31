@@ -11,7 +11,7 @@ export const ROUTES = [
 
 export const LEGAL_ROUTES = [
   { path: '/terms', label: 'Terms & Conditions' },
-  { path: '/privacy', label: 'Privacy Policy' },
+  { path: '/privacy-policy', label: 'Privacy Policy' },
 ] as const;
 
 export const CTA_LABEL = 'Schedule a Consultation';
