@@ -1,7 +1,8 @@
 import type { TypographyOptions } from '@mui/material/styles/createTypography';
+import { FONT_FAMILY_UI } from '@/constants';
 
 export const typography: TypographyOptions = {
-  fontFamily: 'var(--font-jakarta), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+  fontFamily: FONT_FAMILY_UI,
   h1: {
     fontSize: 'clamp(2.25rem, 5vw, 3.5rem)',
     fontWeight: 700,

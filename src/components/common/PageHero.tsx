@@ -100,21 +100,38 @@ export function PageHero({
         {headline}
       </Typography>
       {(subheading || subheadingBold) && (
-        <Typography
-          variant="h6"
-          color="text.secondary"
+        <Box
           data-hero-sub
           sx={{
             maxWidth: isSplit ? 480 : 600,
             mx: isSplit ? undefined : "auto",
             mb: bullets ? 2 : showCta ? 5 : 0,
-            fontWeight: subheadingBold ? 700 : 400,
-            lineHeight: 1.65,
-            fontSize: isSplit ? { xs: "1rem", md: "1.125rem" } : undefined,
           }}
         >
-          {subheadingBold || subheading}
-        </Typography>
+          {subheadingBold && (
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{
+                fontWeight: 700,
+                lineHeight: 1.65,
+                fontSize: isSplit ? { xs: "1rem", md: "1.125rem" } : undefined,
+                mb: subheading ? 1 : 0,
+              }}
+            >
+              {subheadingBold}
+            </Typography>
+          )}
+          {subheading && (
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ lineHeight: 1.7 }}
+            >
+              {subheading}
+            </Typography>
+          )}
+        </Box>
       )}
 
       {bullets && bullets.items.length > 0 && (

@@ -13,6 +13,13 @@ const CONTACT = {
 
 const SUPPORT_BLOCKS = [
   {
+    heading: 'VALUE_DISCOVERY_BLOCK',
+    lead: 'You likely have $5M–$25M in untapped value. The question is — where?',
+    body: 'Most leadership teams don’t realize where revenue is leaking, where execution is breaking down, or how much capital is tied up in poor forecasting — until it’s quantified.',
+    emphasis: 'Get a 15-Minute Value Discovery',
+    closing: 'Walk away with 2–3 specific areas where value is being lost — no commitment required.',
+  },
+  {
     heading: 'Customer Support',
     body: 'Our support team is available to address any concerns or queries you may have about our advisory services.',
   },
@@ -97,15 +104,34 @@ export function ContactPageView() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
               {SUPPORT_BLOCKS.map((b) => (
                 <Box key={b.heading}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{ fontWeight: 600, color: 'text.primary', mb: 1, fontSize: '1rem' }}
-                  >
-                    {b.heading}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7, fontSize: '1rem' }}>
-                    {b.body}
-                  </Typography>
+                  {b.heading === 'VALUE_DISCOVERY_BLOCK' ? (
+                    <>
+                      <Typography variant="h5" color="text.primary" sx={{ mb: 1.5, lineHeight: 1.35 }}>
+                        {b.lead}
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary" sx={{ mb: 2, lineHeight: 1.7, fontSize: '1rem' }}>
+                        {b.body}
+                      </Typography>
+                      <Typography variant="h6" color="text.primary" sx={{ mb: 1.25, fontStyle: 'italic' }}>
+                        {b.emphasis}
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7, fontSize: '1rem' }}>
+                        {b.closing}
+                      </Typography>
+                    </>
+                  ) : (
+                    <>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{ fontWeight: 600, color: 'text.primary', mb: 1, fontSize: '1rem' }}
+                      >
+                        {b.heading}
+                      </Typography>
+                      <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.7, fontSize: '1rem' }}>
+                        {b.body}
+                      </Typography>
+                    </>
+                  )}
                 </Box>
               ))}
             </Box>
@@ -116,6 +142,7 @@ export function ContactPageView() {
             <ContactForm />
           </Box>
         </Box>
+
       </Container>
     </Box>
   );

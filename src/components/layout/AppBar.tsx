@@ -116,7 +116,7 @@ export function LayoutAppBar() {
                             </MuiLink>
                         ))}
                     </Box>
-                    <Button
+                    {/* <Button
                         component={NextLink}
                         href={CTA_PATH}
                         variant="contained"
@@ -140,7 +140,7 @@ export function LayoutAppBar() {
                         }}
                     >
                         {CTA_LABEL}
-                    </Button>
+                              </Button> */}
                     <IconButton
                         color="inherit"
                         onClick={toggle}
@@ -224,7 +224,7 @@ export function LayoutAppBar() {
                             </ListItem>
                         ))}
                     </List>
-                    <Button
+                    {/* <Button
                         component={NextLink}
                         href={CTA_PATH}
                         variant="contained"
@@ -241,7 +241,7 @@ export function LayoutAppBar() {
                         onClick={() => setMobileOpen(false)}
                     >
                         {CTA_LABEL}
-                    </Button>
+                    </Button> */}
                 </Box>
             </Drawer>
         </>

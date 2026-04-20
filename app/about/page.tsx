@@ -1,11 +1,26 @@
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import { PageHero, Section } from '@/components/common';
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import { PageHero, Section } from "@/components/common";
+import { Grid, Paper } from "@mui/material";
 
 export const metadata = {
-  title: 'About Us | Tavisi Partners',
-  description: 'Mission, philosophy, and approach. Founded 2025. 15+ years in GTM transformation and commercial excellence.',
+  title: "About Us | Tavisi Partners",
+  description:
+    "Mission, how we work, and who we help. GTM strategy, sales operations, and clarity, structure, and execution.",
 };
+
+const bodyBlockSx = {
+  maxWidth: 720,
+  color: "text.secondary",
+  lineHeight: 1.7,
+} as const;
+
+const howWeWorkLabelSx = {
+  fontWeight: 600,
+  mb: 0.5,
+  color: "text.primary",
+} as const;
 
 export default function AboutPage() {
   return (
@@ -13,73 +28,127 @@ export default function AboutPage() {
       <PageHero
         headline="About Us"
         subheading="GTM strategy, sales operations, and executive advisory—built on clarity, structure, and execution."
-        showCta
-        maxWidth="md"
+        showCta={false}
+        maxWidth="lg"
       />
 
-      <Section title="Our Mission" alternate>
-        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720 }}>
-          Tavisi Partners was founded in 2025 to help mid-market and SMB leaders simplify
-          go-to-market execution. We believe that too much strategy stays on the slide and too
-          little turns into repeatable results. Our mission is to close that gap: we work with
-          CEOs, CROs, and sales leaders to define a clear GTM, build the operations that scale
-          it, and advise through the change.
-        </Typography>
+      <Section maxWidth="lg" alternate>
+        <Grid container spacing={3} alignItems="center">
+          <Grid item xs={12} md={7}>
+            <Stack spacing={2} sx={bodyBlockSx}>
+              <Typography variant="h2" component="h2" color="text.primary">
+                Our Mission
+              </Typography>
+              <Typography variant="body1">
+                We help SMB and mid-market leaders turn go-to-market strategy
+                into predictable revenue outcomes.
+              </Typography>
+              <Typography variant="body1">
+                Too often, strategy lives in slides and never translates into
+                execution. We close that gap by aligning GTM design, operations,
+                and execution—so growth becomes repeatable, not accidental.
+              </Typography>
+            </Stack>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Box
+              sx={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                // width: "100%",
+                // minHeight: { xs: 300, md: "100%" },
+                borderRadius: 3,
+                overflow: "hidden",
+                // border: "1px solid",
+                // borderColor: "divider",
+                // boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
+              }}
+            >
+              <img
+                src="/assets/images/dipankar-banerjee.webp"
+                alt="Dipankar Banerjee, founder"
+              />
+            </Box>
+          </Grid>
+        </Grid>
       </Section>
 
-      <Section
-        title="Philosophy"
-        subtitle="Three principles guide how we work:"
-      >
-        <Box component="ul" sx={{ m: 0, pl: 2.5, '& li': { mb: 2 } }}>
-          <li>
-            <Typography component="span" sx={{ fontWeight: 600 }}>Clarity.</Typography>{' '}
-            <Typography component="span" color="text.secondary">
-              No jargon for jargon&apos;s sake. We help you articulate who you serve, how you win,
-              and what &quot;good&quot; looks like in terms your team can execute.
-            </Typography>
-          </li>
-          <li>
-            <Typography component="span" sx={{ fontWeight: 600 }}>Structure.</Typography>{' '}
-            <Typography component="span" color="text.secondary">
-              Systems, metrics, and rhythms that scale. We design the operating model—quota,
-              territory, pipeline, forecast—so strategy becomes a habit, not a one‑off.
-            </Typography>
-          </li>
-          <li>
-            <Typography component="span" sx={{ fontWeight: 600 }}>Execution.</Typography>{' '}
-            <Typography component="span" color="text.secondary">
-              Bias for action. We focus on changes that move the needle and work alongside you
-              until they stick. We don&apos;t leave you with a deck and a handshake.
-            </Typography>
-          </li>
-        </Box>
+      <Section title="How We Operate" maxWidth="lg">
+        <Grid container spacing={3}>
+          {[
+            {
+              label: "Clarity",
+              detail:
+                "Define who you serve, how you win, and what success looks like—so your team can execute with focus.",
+            },
+            {
+              label: "Structure",
+              detail:
+                "Build the systems, metrics, and operating cadence that turn strategy into consistent performance.",
+            },
+            {
+              label: "Execution",
+              detail:
+                "Drive changes that move the needle—and stay engaged until results show up in your numbers.",
+            },
+          ].map((lane, idx) => (
+            <Grid item xs={12} md={4} key={lane.label}>
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 3,
+                  height: "100%",
+                  border: "1px solid",
+                  borderColor: "divider",
+                  bgcolor: "background.paper",
+                }}
+              >
+                <Typography
+                  variant="subtitle2"
+                  color="primary.main"
+                  sx={{ mb: 1 }}
+                >
+                  {String(idx + 1).padStart(2, "0")}
+                </Typography>
+                <Typography variant="h6" color="text.primary" sx={{ mb: 1 }}>
+                  {lane.label}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {lane.detail}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
       </Section>
 
-      <Section
-        title="Founder Experience"
-        subtitle="Tavisi Partners is built on 15+ years of hands-on experience in GTM transformation, commercial excellence, and sales operations."
-        alternate
-      >
-        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720 }}>
-          Our founder has led and advised teams through scaling, turnarounds, and new market
-          entry—across industries and company stages. That perspective shapes every engagement:
-          we know what it takes to move from strategy to execution, because we&apos;ve done it
-          repeatedly. We bring the same standards to SMB and mid-market clients that you&apos;d
-          expect from a top-tier advisory—clarity, structure, and a focus on outcomes.
-        </Typography>
+      <Section title="Experience That Delivers" maxWidth="lg" alternate>
+        <Stack spacing={2} sx={{ ...bodyBlockSx, maxWidth: 860 }}>
+          <Typography variant="body1" color="text.secondary">
+            Built on 15+ years of hands-on GTM and sales operations leadership,
+            we&apos;ve helped companies scale, fix broken revenue engines, and
+            enter new markets.
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            We bring top-tier advisory thinking with operator-level
+            execution—focused on outcomes, not presentations.
+          </Typography>
+        </Stack>
       </Section>
 
-      <Section
-        title="How We Help SMB & Mid-Market Companies"
-        subtitle="We work with leadership teams who are ready to level up their GTM but don’t need (or want) a bloated consultancy. We’re pragmatic, experienced, and focused on what works at your stage."
-      >
-        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 720 }}>
-          Whether you&apos;re refining your GTM motion, building or fixing sales operations, or
-          need an adviser in the room for board prep and transformation, we tailor the
-          engagement to your priorities. We don&apos;t do cookie-cutter; we do clarity, structure,
-          and execution that fits your company.
-        </Typography>
+      <Section title="Who We Help" maxWidth="lg">
+        <Stack spacing={2} sx={{ ...bodyBlockSx, maxWidth: 860 }}>
+          <Typography variant="body1" color="text.secondary">
+            We partner with leadership teams ready to scale—but not interested
+            in bloated consulting.
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            Whether you need to refine GTM, fix sales operations, or navigate
+            growth and transformation, we deliver practical, tailored solutions
+            that work at your stage.
+          </Typography>
+        </Stack>
       </Section>
     </>
   );

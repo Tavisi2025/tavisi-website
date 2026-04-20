@@ -1,16 +1,9 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 import { AppLayout } from '@/components/layout';
 import { APP_NAME } from '@/constants';
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-jakarta',
-  weight: ['400', '500', '600', '700'],
-});
+import { plusJakarta } from '@/fonts';
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -23,8 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={plusJakarta.variable}>
-      <body className={plusJakarta.className}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${plusJakarta.variable} ${plusJakarta.className}`}
+    >
+      <body>
         <Providers>
           <AppLayout>{children}</AppLayout>
         </Providers>

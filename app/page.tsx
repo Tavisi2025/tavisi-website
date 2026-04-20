@@ -1,13 +1,8 @@
-import {
-  PageHero,
-  Section,
-  CTABand,
-  AdvisorySupportBlock,
-  CurrentProjectsBlock,
-} from "@/components/common";
-import SpeedIcon from "@mui/icons-material/Speed";
-import PublicIcon from "@mui/icons-material/Public";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
+import Image from "next/image";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import { CTAButton, CTABand } from "@/components/common";
 
 export const metadata = {
   title:
@@ -16,102 +11,126 @@ export const metadata = {
     "Bringing clarity and simplicity to go-to-market execution. GTM strategy, sales operations & planning, and executive advisory for mid-market and SMB leadership.",
 };
 
-const CURRENT_PROJECTS = [
-  {
-    text: "An online jewelry retail shop eyeing to draw customers at scale to drive proactive demand for their designer products.",
-    image: "/assets/images/project-jewelry-retail.jpg",
-    imageAlt: "Jewelry retail project",
-    authorName: "Samantha Johnson",
-    authorTitle: "CEO and Co-founder of ABC Company",
-  },
-  {
-    text: "DesignMe has greatly exceeded our expectations. The communication is always excellent, the turnaround is extremely quick, and the designs are fresh, innovative, and spot on.",
-    image: "/assets/images/project-product-design.jpg",
-    imageAlt: "Product design project",
-    authorName: "Paw Patt",
-    authorTitle: "Product Designer at Lightdash",
-  },
-  {
-    text: "A multifaceted technology company driving multi-channel go-to-market to drive demand for AI driven resource and workflow management.",
-    image: "/assets/images/project-technology-company.jpg",
-    imageAlt: "Technology company project",
-    authorName: "James Chen",
-    authorTitle: "VP of Growth, TechFlow",
-  },
-  {
-    text: "Tavisi Partners has provided our startup with significant leverage. Their work is exceptionally professional, and the team is always attentive to our needs, with impressively fast turnaround times.",
-    image: "/assets/images/project-startup-advisory.jpg",
-    imageAlt: "Startup advisory project",
-    authorName: "Patrick Nawrocki",
-    authorTitle: "UX Manager at Superhabits",
-  },
-];
-
-const ADVISORY_SUPPORT = [
-  {
-    title: "Operational Excellence",
-    description:
-      "Accelerate revenue with tailored Go-to-Market strategy, sales operations design, and executive advisory. We reduce commercial friction and equip leadership teams with the structure they need to grow with confidence.",
-    buttonLabel: "Learn More",
-    buttonHref: "/contact",
-    icon: <SpeedIcon />,
-  },
-  {
-    title: "Market Readiness",
-    description:
-      "Tailored, prescriptive solutions specific to your business model—rolled out quickly and built to last. Drive revenue and open additional revenue lanes.",
-    points: [
-      "SAP migration consultation is available for S/4HANA Public and S/4HANA Private Cloud. These are best practices services used in the beginning of the project phase to help and support the customer plan their migration in a cost-effective manner.",
-    ],
-    buttonLabel: "Learn More",
-    buttonHref: "/contact",
-    icon: <PublicIcon />,
-  },
-  {
-    title: "Performance Insights",
-    description:
-      "A transparent engagement model so you can monitor, measure, and make quick decisions. Our prescriptive approach helps you grow with clarity.",
-    buttonLabel: "Learn More",
-    buttonHref: "/contact",
-    icon: <AnalyticsIcon />,
-  },
-];
-
 export default function HomePage() {
   return (
     <>
-      <PageHero
-        headline="Accelerate Your Growth"
-        subheadingBold="Tavisi Partners applies quantum-inspired decision frameworks to solve complex enterprise growth and transformation problems."
-        showCta
-        layout="split"
-        imageSrc="/assets/images/hero-team-collaboration.jpg"
-        imageAlt="Team collaboration and business growth"
-        ctaLabel="Get started"
-        bullets={{
-          label: "Few questions to ponder:",
-          items: [
-            "Where is margin silently leaking across your value chain?",
-            "What's the cost of misalignment between strategy and execution?",
-            "Is your data driving decisions — or just reporting history?",
-            "Is your growth constrained by market demand — or by internal misalignment?",
-            "Can you clearly trace revenue leakage back to GTM design decisions?",
-            "How predictable is your revenue — truly?",
-            "How much working capital is tied up in forecast inaccuracies?",
-          ],
+      <Box component="section" sx={{ py: { xs: 7, md: 10 }, px: 2 }}>
+        <Container maxWidth="lg">
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1.05fr 0.95fr" },
+              gap: { xs: 4, md: 6 },
+              alignItems: "center",
+            }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                minHeight: { xs: 260, sm: 340, md: 420 },
+                borderRadius: 3,
+                overflow: "hidden",
+                border: "1px solid",
+                borderColor: "divider",
+              }}
+            >
+              <Image
+                src="/assets/images/hero-team-collaboration.jpg"
+                alt="Team collaboration and business growth"
+                fill
+                sizes="(max-width: 900px) 100vw, 52vw"
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            </Box>
+
+            <Box>
+              <Typography
+                variant="h1"
+                component="h1"
+                sx={{ mb: 2, maxWidth: 640, fontSize: { xs: "2rem", md: "2.8rem" } }}
+              >
+                Unlock predictable revenue growth by fixing GTM misalignment and
+                forecast inaccuracy.
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ mb: 3, maxWidth: 620, lineHeight: 1.7 }}
+              >
+                We help mid-market leadership teams fix GTM misalignment, improve
+                forecast accuracy, and unlock revenue growth. and transformation
+                problems.
+              </Typography>
+              <CTAButton href="/contact"/>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
+      <Box
+        component="section"
+        sx={{
+          py: { xs: 6, md: 8 },
+          px: 2,
+          borderTop: "1px solid",
+          borderColor: "divider",
         }}
-      />
+      >
+        <Container maxWidth="lg">
+          <Typography variant="h2" component="h2" sx={{ mb: { xs: 3, md: 4 } }}>
+            Who do we help
+          </Typography>
 
-      <Section title="Advisory Support" alternate hideDivider>
-        <AdvisorySupportBlock items={ADVISORY_SUPPORT} />
-      </Section>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: { xs: 2, md: 3 },
+            }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                minHeight: { xs: 220, sm: 280, md: 360 },
+                borderRadius: 2,
+                overflow: "hidden",
+                border: "1px solid",
+                borderColor: "divider",
+                bgcolor: "background.paper",
+              }}
+            >
+              <Image
+                src="/assets/images/growth-table.png"
+                alt="Growth table examples"
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </Box>
 
-      <Section alternate>
-        <CurrentProjectsBlock
-          projects={CURRENT_PROJECTS}
-          title="Our Current Projects"
-        />
-      </Section>
+            <Box
+              sx={{
+                position: "relative",
+                minHeight: { xs: 220, sm: 280, md: 360 },
+                borderRadius: 2,
+                overflow: "hidden",
+                border: "1px solid",
+                borderColor: "divider",
+                bgcolor: "background.paper",
+              }}
+            >
+              <Image
+                src="/assets/images/examples.png"
+                alt="Client use case examples"
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
 
       <CTABand />
     </>

@@ -93,7 +93,7 @@ export function Footer() {
                       color="text.secondary"
                       underline="hover"
                       variant="body2"
-                      sx={{ transition: 'color 0.2s' }}
+                      sx={{ transition: "color 0.2s" }}
                     >
                       {r.label}
                     </MuiLink>

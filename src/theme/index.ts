@@ -12,7 +12,31 @@ const baseThemeOptions: Omit<ThemeOptions, 'palette'> = {
   components: {
     MuiCssBaseline: {
       styleOverrides: {
-        body: { scrollBehavior: 'smooth' },
+        body: ({ theme } : any) => ({
+          scrollBehavior: 'smooth',
+          fontFamily: theme.typography.fontFamily,
+        }),
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          fontFamily: theme.typography.fontFamily,
+        }),
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          fontFamily: theme.typography.fontFamily,
+        }),
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          fontFamily: theme.typography.fontFamily,
+        }),
       },
     },
     MuiButton: {
