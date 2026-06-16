@@ -63,12 +63,29 @@ export function LayoutAppBar() {
                             "&:hover": { opacity: 0.85 },
                         }}
                     >
-                        <img
-                            src="/assets/images/logo.png"
-                            alt="Tavisi Partners"
-                            width="80px"
-                            height="80px"
-                        />
+                        <Box
+                            sx={{
+                                borderRadius: "16px",
+                                overflow: "hidden",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: 120,
+                                height: 80,
+                                boxShadow: isDark
+                                    ? "0 0 0 1.5px rgba(255,255,255,0.12)"
+                                    : "0 0 0 1.5px rgba(0,0,0,0.08)",
+                            }}
+                        >
+                            <Image
+                                src="/assets/images/logo.png"
+                                alt="Tavisi Partners"
+                                width={120}
+                                height={80}
+                                style={{ objectFit: "cover", display: "block" }}
+                                priority
+                            />
+                        </Box>
                     </MuiLink>
 
                     <Box sx={{ flex: 1 }} />
@@ -153,12 +170,30 @@ export function LayoutAppBar() {
             >
                 <Box sx={{ py: 3, px: 2 }}>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1 }}>
-                        <img
-                            src="/assets/images/logo.png"
-                            alt="Tavisi Partners"
-                            width="80px"
-                            height="80px"
-                        />
+                        <Box
+                            sx={{
+                                borderRadius: "12px",
+                                overflow: "hidden",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                width: 100,
+                                height: 50,
+                                flexShrink: 0,
+                                boxShadow: isDark
+                                    ? "0 0 0 1.5px rgba(255,255,255,0.12)"
+                                    : "0 0 0 1.5px rgba(0,0,0,0.08)",
+                            }}
+                        >
+                            <Image
+                                src="/assets/images/logo.png"
+                                alt="Tavisi Partners"
+                                width={100}
+                                height={50}
+                                style={{ objectFit: "cover", display: "block" }}
+                                priority
+                            />
+                        </Box>
                     </Box>
 
                     <List sx={{ pt: 1 }}>
