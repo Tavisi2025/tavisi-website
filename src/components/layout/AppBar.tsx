@@ -5,7 +5,6 @@ import NextLink from "next/link";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import MuiLink from "@mui/material/Link";
 import Drawer from "@mui/material/Drawer";
@@ -14,11 +13,10 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useThemeMode } from "@/hooks/useThemeMode";
-import { ROUTES, CTA_LABEL, CTA_PATH } from "@/constants";
+import { ROUTES } from "@/constants";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import MenuIcon from "@mui/icons-material/Menu";
-import Image from "next/image";
 
 export function LayoutAppBar() {
     const { mode, toggle } = useThemeMode();
@@ -63,29 +61,16 @@ export function LayoutAppBar() {
                             "&:hover": { opacity: 0.85 },
                         }}
                     >
-                        <Box
-                            sx={{
-                                borderRadius: "16px",
-                                overflow: "hidden",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: 120,
-                                height: 80,
-                                boxShadow: isDark
-                                    ? "0 0 0 1.5px rgba(255,255,255,0.12)"
-                                    : "0 0 0 1.5px rgba(0,0,0,0.08)",
-                            }}
-                        >
-                            <Image
-                                src="/assets/images/logo.png"
-                                alt="Tavisi Partners"
-                                width={120}
-                                height={80}
-                                style={{ objectFit: "cover", display: "block" }}
-                                priority
-                            />
-                        </Box>
+                        <img
+                            src={
+                                isDark
+                                    ? "/assets/images/dark-theme-logo.png"
+                                    : "/assets/images/light-theme-logo.png"
+                            }
+                            alt="Tavisi Partners"
+                            width="80px"
+                            height="80px"
+                        />
                     </MuiLink>
 
                     <Box sx={{ flex: 1 }} />
@@ -170,30 +155,16 @@ export function LayoutAppBar() {
             >
                 <Box sx={{ py: 3, px: 2 }}>
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 1 }}>
-                        <Box
-                            sx={{
-                                borderRadius: "12px",
-                                overflow: "hidden",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: 100,
-                                height: 50,
-                                flexShrink: 0,
-                                boxShadow: isDark
-                                    ? "0 0 0 1.5px rgba(255,255,255,0.12)"
-                                    : "0 0 0 1.5px rgba(0,0,0,0.08)",
-                            }}
-                        >
-                            <Image
-                                src="/assets/images/logo.png"
-                                alt="Tavisi Partners"
-                                width={100}
-                                height={50}
-                                style={{ objectFit: "cover", display: "block" }}
-                                priority
-                            />
-                        </Box>
+                        <img
+                            src={
+                                isDark
+                                    ? "/assets/images/dark-theme-logo.png"
+                                    : "/assets/images/light-theme-logo.png"
+                            }
+                            alt="Tavisi Partners"
+                            width="80px"
+                            height="80px"
+                        />
                     </Box>
 
                     <List sx={{ pt: 1 }}>
