@@ -3,7 +3,6 @@
 import React from 'react';
 import {
   Box,
-  InputLabel,
   InputAdornment,
   MenuItem,
   Select,
@@ -11,6 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { BaseTextFieldProps } from '@mui/material/TextField';
+import { useTheme } from '@mui/material/styles';
 import {
   CountryIso2,
   defaultCountries,
@@ -18,6 +18,7 @@ import {
   parseCountry,
   usePhoneInput,
 } from 'react-international-phone';
+import { FieldLabel, fieldSx } from './formStyles';
 
 export interface CustomContactNumberInputProps extends Omit<BaseTextFieldProps, 'error'> {
   label?: string;
@@ -28,38 +29,21 @@ export interface CustomContactNumberInputProps extends Omit<BaseTextFieldProps, 
   onChange: (phone: string) => void;
 }
 
-const inputLabelSx = {
-  color: '#475569',
-  fontSize: '14px',
-  flexShrink: 0,
-  fontWeight: 600,
-  marginLeft: '5px',
-} as const;
-
-const textFieldSx = {
-  '& .MuiOutlinedInput-root': {
-    borderRadius: '0.5rem',
-    alignItems: 'center',
-  },
-  '& .MuiInputBase-input': {
-    padding: '10px 8px',
-    alignSelf: 'center',
-  },
-  '& .MuiInputAdornment-root': {
-    alignItems: 'center',
-    margin: 0,
-    maxHeight: 'none',
-  },
-  '& .MuiInput-underline:before': {
-    borderBottom: 'none !important',
-  },
-  '& .MuiInput-underline:hover:before': {
-    borderBottom: 'none !important',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottom: 'none !important',
-  },
-} as const;
+function ChevronIcon(props: { className?: string }) {
+  const isDark = useTheme().palette.mode === 'dark';
+  return (
+    <Box
+      component="img"
+      src="/assets/icons/contact/chevron-down.svg"
+      alt=""
+      aria-hidden
+      width={9.5}
+      height={5.5}
+      className={props.className}
+      sx={{ pointerEvents: 'none', filter: isDark ? 'invert(1)' : 'none' }}
+    />
+  );
+}
 
 export function CustomContactNumberInput({
   label,
@@ -68,55 +52,53 @@ export function CustomContactNumberInput({
   error,
   onChange,
   required,
-  variant = 'outlined',
   flagDisabled,
+  inputProps,
   ...restProps
 }: CustomContactNumberInputProps) {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const inputId = (inputProps?.id as string | undefined) ?? 'contact-phone';
+
   const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } =
     usePhoneInput({
       defaultCountry: 'us',
       value,
       countries: defaultCountries,
+      // The dial code is shown in the country selector; the emitted value still includes it (E.164).
+      disableDialCodeAndPrefix: true,
       onChange: (data) => {
         onChange(data.phone);
       },
     });
 
   return (
-    <Box
-      width="100%"
-      sx={{
-        borderBottom: variant === 'standard' ? '1px solid rgba(71, 85, 105, 0.25)' : 'none',
-        pb: variant === 'standard' ? 0.5 : 0,
-      }}
-    >
+    <Box width="100%">
       {label && (
-        <Box mb={1}>
-          <InputLabel sx={inputLabelSx} required={required}>
-            {label}
-          </InputLabel>
-        </Box>
+        <FieldLabel htmlFor={inputId} required={required}>
+          {label}
+        </FieldLabel>
       )}
       <TextField
-        sx={textFieldSx}
-        variant={variant}
+        sx={fieldSx(theme)}
+        variant="outlined"
         fullWidth
         value={inputValue}
         placeholder={placeHolder}
         onChange={handlePhoneValueChange}
         type="tel"
         inputRef={inputRef}
-        {...(error ? { error: true, helperText: error } : {})}
+        required={required}
+        inputProps={{ ...inputProps, id: inputId }}
+        {...(error ? { error: true, helperText: typeof error === 'string' ? error : undefined } : {})}
         InputProps={{
           startAdornment: (
-            <InputAdornment
-              position="start"
-              sx={{
-                marginRight: 1,
-                marginLeft: '-6px',
-              }}
-            >
+            <InputAdornment position="start" sx={{ gap: 1.25, maxHeight: 'none' }}>
               <Select
+                variant="standard"
+                disableUnderline
+                IconComponent={ChevronIcon}
+                inputProps={{ 'aria-label': 'Country calling code' }}
                 MenuProps={{
                   PaperProps: {
                     sx: {
@@ -132,28 +114,26 @@ export function CustomContactNumberInput({
                   anchorOrigin: { vertical: 'bottom', horizontal: 'left' },
                 }}
                 sx={{
-                  width: 60,
-                  fieldset: { display: 'none !important' },
-                  '&.Mui-focused fieldset': { display: 'none !important' },
-                  '& .MuiOutlinedInput-notchedOutline': { border: 'none !important' },
                   '& .MuiSelect-select': {
                     display: 'flex',
                     alignItems: 'center',
-                    paddingRight: '28px !important',
-                    paddingTop: 0,
-                    paddingBottom: 0,
-                    minHeight: 24,
+                    gap: 0.75,
+                    py: 0,
+                    pr: '18px !important',
+                    minHeight: 0,
+                    bgcolor: 'transparent !important',
                   },
-                  '& .MuiSelect-icon': {
-                    right: 0,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                  },
+                  '& .MuiSelect-icon': { right: 0, top: '50%', transform: 'translateY(-50%)' },
                 }}
                 value={country.iso2}
                 onChange={(e) => setCountry(e.target.value as CountryIso2)}
                 renderValue={(iso2) => (
-                  <FlagImage iso2={iso2 as CountryIso2} size="20px" />
+                  <>
+                    <FlagImage iso2={iso2 as CountryIso2} size="20px" />
+                    <Typography component="span" sx={{ color: 'text.primary', fontSize: '0.9375rem', lineHeight: '22px' }}>
+                      +{country.dialCode}
+                    </Typography>
+                  </>
                 )}
               >
                 {defaultCountries.map((c) => {
@@ -163,19 +143,9 @@ export function CustomContactNumberInput({
                       key={parsed.iso2}
                       value={parsed.iso2}
                       disabled={flagDisabled ?? false}
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 1.25,
-                        py: 1.25,
-                        minHeight: 44,
-                      }}
+                      sx={{ display: 'flex', alignItems: 'center', gap: 1.25, py: 1.25, minHeight: 44 }}
                     >
-                      <FlagImage
-                        iso2={parsed.iso2}
-                        size="20px"
-                        style={{ marginRight: 8, flexShrink: 0 }}
-                      />
+                      <FlagImage iso2={parsed.iso2} size="20px" style={{ marginRight: 8, flexShrink: 0 }} />
                       <Typography sx={{ flex: 1, minWidth: 0 }} noWrap>
                         {parsed.name}
                       </Typography>
@@ -186,6 +156,10 @@ export function CustomContactNumberInput({
                   );
                 })}
               </Select>
+              <Box
+                aria-hidden
+                sx={{ width: '1px', height: 24, bgcolor: isDark ? 'rgba(255,255,255,0.16)' : 'rgba(10,10,10,0.12)' }}
+              />
             </InputAdornment>
           ),
         }}

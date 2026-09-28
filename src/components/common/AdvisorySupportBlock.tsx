@@ -72,7 +72,7 @@ export function AdvisorySupportBlock({ items }: AdvisorySupportBlockProps) {
             variant="h6"
             component="h3"
             gutterBottom
-            sx={{ fontWeight: 700, letterSpacing: '-0.02em', color: 'text.primary' }}
+            sx={{ fontWeight: 700, color: 'text.primary' }}
           >
             {item.title}
           </Typography>
@@ -100,7 +100,6 @@ export function AdvisorySupportBlock({ items }: AdvisorySupportBlockProps) {
             sx={{
               fontWeight: 600,
               color: 'text.primary',
-              letterSpacing: '0.02em',
               '&:hover': { color: 'primary.main' },
             }}
           >

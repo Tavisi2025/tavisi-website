@@ -193,7 +193,7 @@ export default function NewsPage() {
             variant="h2"
             component="h2"
             align="center"
-            sx={{ fontWeight: 700, letterSpacing: '-0.03em', mb: 6 }}
+            sx={{ fontWeight: 700, mb: 6 }}
           >
             <Box component="span" sx={{ color: 'text.primary' }}>Insightful Strategies to Drive Growth </Box>
           </Typography>
@@ -215,7 +215,7 @@ export default function NewsPage() {
       {/* How to Make the Most – 2x2 tip cards */}
       <Section alternate>
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, letterSpacing: '-0.03em' }}>
+          <Typography variant="h2" component="h2" sx={{ fontWeight: 700 }}>
             <Box component="span" sx={{ color: 'text.primary' }}>How to Make the Most of </Box>
             <Box component="span" sx={{ color: 'primary.main' }}>Our Resources</Box>
           </Typography>

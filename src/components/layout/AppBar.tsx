@@ -113,7 +113,6 @@ export function LayoutAppBar() {
                             borderRadius: 10,
                             px: 2.5,
                             fontWeight: 600,
-                            letterSpacing: "0.02em",
                             transition: "transform 0.2s ease, box-shadow 0.3s ease",
                             "&:hover": {
                                 transform: "translateY(-2px)",
@@ -206,7 +205,6 @@ export function LayoutAppBar() {
                             py: 1.5,
                             borderRadius: 10,
                             fontWeight: 600,
-                            letterSpacing: "0.02em",
                             "&:hover": { boxShadow: "0 6px 20px rgba(14, 116, 144, 0.4)" },
                         }}
                         onClick={() => setMobileOpen(false)}

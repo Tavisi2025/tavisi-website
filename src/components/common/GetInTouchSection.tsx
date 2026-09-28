@@ -8,11 +8,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { useTheme } from '@mui/material/styles';
+import { CONTACT_INFO } from '@/constants';
 
 const CONTACT = {
-  email: 'tavisipartners@gmail.com',
-  phone: '1-484-664-0722',
-  address: 'West Chester, PA 19382',
+  email: CONTACT_INFO.emails[0],
+  phone: CONTACT_INFO.phone,
+  address: CONTACT_INFO.address,
 };
 
 const inputSx = { '& .MuiOutlinedInput-root': { borderRadius: 0 } };
@@ -54,7 +55,7 @@ export function GetInTouchSection() {
             <Typography
               variant="h2"
               component="h2"
-              sx={{ fontWeight: 700, letterSpacing: '-0.03em', color: 'text.primary', mb: 2 }}
+              sx={{ fontWeight: 700, color: 'text.primary', mb: 2 }}
             >
               Get in Touch
             </Typography>
@@ -172,7 +173,6 @@ export function GetInTouchSection() {
                     fontWeight: 600,
                     px: 4,
                     py: 1.5,
-                    letterSpacing: '0.02em',
                     transition: 'box-shadow 0.3s ease',
                     '&:hover': { boxShadow: '0 6px 20px rgba(14, 116, 144, 0.4)' },
                   }}

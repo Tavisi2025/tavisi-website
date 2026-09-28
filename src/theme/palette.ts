@@ -3,7 +3,7 @@ import type { PaletteOptions } from '@mui/material/styles';
 // Enterprise: restrained, high-contrast. Single accent (steel blue/cyan), deep neutrals.
 const primaryMain = '#0e7490';   // steel/cyan
 const primaryLight = '#06b6d4';
-const primaryDark = '#0c4a6e';
+const primaryDark = '#083344'; // deep cyan from the Figma home design (matrix index badges)
 
 export const lightPalette: PaletteOptions = {
   mode: 'light',

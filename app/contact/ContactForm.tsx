@@ -1,16 +1,18 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import NextLink from 'next/link';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import MuiLink from '@mui/material/Link';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useTheme } from '@mui/material/styles';
-import EmailIcon from '@mui/icons-material/EmailOutlined';
 import { isPhoneValid } from '@/utils/phoneValidation';
 import { CustomContactNumberInput } from './CustomContactNumberInput';
+import { FieldLabel, fieldSx } from './formStyles';
+import { FORM } from './content';
 
 const MESSAGE_MAX = 120;
 
@@ -25,6 +27,7 @@ function getDateAndTimeString(): string {
 export function ContactForm() {
   const theme = useTheme();
   const isDark = theme.palette.mode === 'dark';
+  const inputSx = fieldSx(theme);
   const formRef = useRef<HTMLFormElement>(null);
   const hideSuccessTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
@@ -67,7 +70,7 @@ export function ContactForm() {
     });
 
     try {
-      const res = await fetch(`${CONTACT_API_URL}?${params.toString()}`, {
+      await fetch(`${CONTACT_API_URL}?${params.toString()}`, {
         method: 'POST',
         mode: 'no-cors',
       });
@@ -84,60 +87,91 @@ export function ContactForm() {
   }
 
   return (
-    <Paper
-      variant="outlined"
+    <Box
+      id="contact-form"
       sx={{
-        p: 4,
-        borderRadius: 3,
+        p: { xs: 3, md: 4.5 },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3.5,
+        bgcolor: 'background.paper',
         border: '1px solid',
         borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
-        boxShadow: isDark ? '0 8px 32px rgba(0,0,0,0.2)' : '0 8px 32px rgba(0,0,0,0.06)',
-        bgcolor: 'transparent',
+        borderRadius: 3,
+        boxShadow: '0 8px 16px rgba(0,0,0,0.06)',
+        scrollMarginTop: 96,
       }}
     >
-      <Typography variant="h5" component="h2" sx={{ fontWeight: 700, color: 'text.primary', mb: 0.5 }}>
-        Get in Touch
-      </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-        You can reach us anytime
-      </Typography>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75 }}>
+        <Typography component="h2" sx={{ color: 'text.primary', fontSize: '1.375rem', fontWeight: 700, lineHeight: '30px' }}>
+          {FORM.title}
+        </Typography>
+        <Typography sx={{ color: 'text.secondary', fontSize: '0.875rem', lineHeight: '22px' }}>{FORM.subtitle}</Typography>
+      </Box>
 
       <form ref={formRef} onSubmit={handleSubmit}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-          <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-            <TextField
-              label="First name"
-              name="firstName"
-              required
-              fullWidth
-              autoComplete="given-name"
-              sx={{ flex: { xs: '1 1 100%', sm: '1 1 calc(50% - 8px)' } }}
-            />
-            <TextField
-              label="Last name"
-              name="lastName"
-              required
-              fullWidth
-              autoComplete="family-name"
-              sx={{ flex: { xs: '1 1 100%', sm: '1 1 calc(50% - 8px)' } }}
-            />
+          <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+            <Box sx={{ flex: 1 }}>
+              <FieldLabel htmlFor="contact-first-name" required>
+                First name
+              </FieldLabel>
+              <TextField
+                id="contact-first-name"
+                name="firstName"
+                placeholder="John"
+                required
+                fullWidth
+                autoComplete="given-name"
+                sx={inputSx}
+              />
+            </Box>
+            <Box sx={{ flex: 1 }}>
+              <FieldLabel htmlFor="contact-last-name" required>
+                Last name
+              </FieldLabel>
+              <TextField
+                id="contact-last-name"
+                name="lastName"
+                placeholder="Doe"
+                required
+                fullWidth
+                autoComplete="family-name"
+                sx={inputSx}
+              />
+            </Box>
           </Box>
 
-          <TextField
-            label="Your email"
-            name="email"
-            type="email"
-            required
-            fullWidth
-            autoComplete="email"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon sx={{ color: 'text.secondary', fontSize: 20 }} />
-                </InputAdornment>
-              ),
-            }}
-          />
+          <Box>
+            <FieldLabel htmlFor="contact-email" required>
+              Email
+            </FieldLabel>
+            <TextField
+              id="contact-email"
+              name="email"
+              type="email"
+              placeholder="you@company.com"
+              required
+              fullWidth
+              autoComplete="email"
+              sx={inputSx}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Box
+                      component="img"
+                      src="/assets/icons/contact/input-email.svg"
+                      alt=""
+                      aria-hidden
+                      width={18}
+                      height={18}
+                      sx={{ display: 'block', filter: isDark ? 'invert(1)' : 'none' }}
+                    />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Box>
 
           <CustomContactNumberInput
             label="Phone number"
@@ -146,7 +180,7 @@ export function ContactForm() {
               setPhone(value);
               if (phoneError) setPhoneError('');
             }}
-            placeHolder="Phone number"
+            placeHolder="(555) 000-0000"
             error={phoneError || undefined}
             required
             inputProps={{
@@ -156,72 +190,69 @@ export function ContactForm() {
             }}
           />
 
-          <TextField
-            label="How can we help?"
-            name="message"
-            required
-            fullWidth
-            multiline
-            rows={4}
-            value={message}
-            onChange={(e) => setMessage(e.target.value.slice(0, MESSAGE_MAX))}
-            inputProps={{ maxLength: MESSAGE_MAX }}
-            helperText={
-              <Box component="span" sx={{ display: 'flex', justifyContent: 'flex-end', mt: 0.5 }}>
-                <Typography variant="caption" color="text.secondary">
-                  {message.length}/{MESSAGE_MAX}
-                </Typography>
-              </Box>
-            }
-            FormHelperTextProps={{ sx: { mx: 0 } }}
-          />
+          <Box>
+            <FieldLabel htmlFor="contact-message" required>
+              How can we help?
+            </FieldLabel>
+            <TextField
+              id="contact-message"
+              name="message"
+              placeholder="Tell us a little about your goals or challenges…"
+              required
+              fullWidth
+              multiline
+              minRows={4}
+              value={message}
+              onChange={(e) => setMessage(e.target.value.slice(0, MESSAGE_MAX))}
+              inputProps={{ maxLength: MESSAGE_MAX, 'aria-describedby': 'contact-message-count' }}
+              sx={{ ...inputSx, '& .MuiInputBase-multiline': { p: '12px 14px', minHeight: 132, alignItems: 'flex-start' } }}
+            />
+            <Typography
+              id="contact-message-count"
+              sx={{ mt: 1, textAlign: 'right', color: 'text.secondary', fontSize: '0.75rem', lineHeight: '18px' }}
+            >
+              {message.length} / {MESSAGE_MAX}
+            </Typography>
+          </Box>
 
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            size="large"
+            fullWidth
             disabled={status === 'sending'}
             sx={{
-              borderRadius: 2,
+              height: 52,
+              borderRadius: 1.5,
+              fontSize: '0.9375rem',
               fontWeight: 600,
-              py: 1.5,
-              textTransform: 'none',
-              transition: 'transform 0.2s ease, box-shadow 0.3s ease',
-              '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: '0 8px 24px rgba(14, 116, 144, 0.35)',
-              },
-              '@media (prefers-reduced-motion: reduce)': { '&:hover': { transform: 'none' } },
+              boxShadow: '0 4px 6px rgba(14,116,144,0.18)',
+              '&:hover': { boxShadow: '0 6px 14px rgba(14,116,144,0.28)' },
             }}
           >
-            {status === 'sending' ? 'Sending…' : 'Submit'}
+            {status === 'sending' ? 'Sending…' : FORM.submit}
           </Button>
 
           {status === 'sent' && (
-            <Typography variant="body2" color="success.main">
+            <Typography variant="body2" color="success.main" role="status">
               Thank you. We&apos;ll be in touch within 1–2 business days.
             </Typography>
           )}
           {status === 'error' && (
-            <Typography variant="body2" color="error.main">
+            <Typography variant="body2" color="error.main" role="alert">
               Something went wrong. Please try again or email us directly.
             </Typography>
           )}
 
-          {/* <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 1.5 }}>
-            By contacting us, you agree to our{' '}
-            <Link component={NextLink} href="/terms" underline="hover" sx={{ fontWeight: 600 }}>
-              Terms of service
-            </Link>{' '}
-            and{' '}
-            <Link component={NextLink} href="/privacy" underline="hover" sx={{ fontWeight: 600 }}>
+          <Typography sx={{ color: 'text.secondary', fontSize: '0.75rem', lineHeight: '18px', textAlign: 'center' }}>
+            By submitting, you agree to our{' '}
+            <MuiLink component={NextLink} href="/privacy-policy" underline="always" sx={{ color: 'primary.main' }}>
               Privacy Policy
-            </Link>
+            </MuiLink>
             .
-          </Typography> */}
+          </Typography>
         </Box>
       </form>
-    </Paper>
+    </Box>
   );
 }

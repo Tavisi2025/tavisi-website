@@ -3,7 +3,7 @@ import './globals.css';
 import { Providers } from './providers';
 import { AppLayout } from '@/components/layout';
 import { APP_NAME } from '@/constants';
-import { plusJakarta } from '@/fonts';
+import { aptos } from '@/fonts';
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakarta.variable} ${plusJakarta.className}`}
+      className={`${aptos.variable} ${aptos.className}`}
     >
       <body>
         <Providers>

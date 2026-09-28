@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon">
+<path id="Union" d="M12 3.125C12.4832 3.125 12.875 3.51675 12.875 4V7.125H18C19.5878 7.125 20.875 8.41218 20.875 10V13.125H22C22.4832 13.125 22.875 13.5168 22.875 14C22.875 14.4832 22.4832 14.875 22 14.875H20.875V18C20.875 19.5878 19.5878 20.875 18 20.875H6C4.41218 20.875 3.125 19.5878 3.125 18V14.875H2C1.51675 14.875 1.125 14.4832 1.125 14C1.125 13.5168 1.51675 13.125 2 13.125H3.125V10C3.125 8.41218 4.41218 7.125 6 7.125H11.125V4.875H8C7.51675 4.875 7.125 4.48325 7.125 4C7.125 3.51675 7.51675 3.125 8 3.125H12ZM6 8.875C5.37868 8.875 4.875 9.37868 4.875 10V18C4.875 18.6213 5.37868 19.125 6 19.125H18C18.6213 19.125 19.125 18.6213 19.125 18V10C19.125 9.37868 18.6213 8.875 18 8.875H6Z" fill="#0A0A0A" fill-opacity="0.35"/>
+<path id="Vector" d="M15 13V15" stroke="#0A0A0A" stroke-opacity="0.35" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M9 13V15" stroke="#0A0A0A" stroke-opacity="0.35" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

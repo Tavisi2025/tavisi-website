@@ -29,17 +29,22 @@ export function Footer() {
       }}
     >
       <Container maxWidth="lg">
-        <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={{ xs: 6, md: 10 }}
-          justifyContent="space-between"
-          flexWrap="wrap"
+        {/* Two-column grid: brand/copyright on the left; nav and Privacy Policy share the right
+            column so their left edges line up. */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr auto" },
+            columnGap: 10,
+            rowGap: { xs: 3, md: 4 },
+            alignItems: "start",
+          }}
         >
           <Box sx={{ maxWidth: 340 }}>
             <Typography
               variant="h6"
               gutterBottom
-              sx={{ fontWeight: 700, letterSpacing: "-0.02em" }}
+              sx={{ fontWeight: 700 }}
             >
               {APP_NAME}
             </Typography>
@@ -80,7 +85,7 @@ export function Footer() {
               <Typography
                 variant="overline"
                 color="text.secondary"
-                sx={{ fontSize: '0.6875rem', letterSpacing: '0.1em', fontWeight: 600 }}
+                sx={{ fontSize: '0.6875rem', fontWeight: 600 }}
               >
                 Legal
               </Typography>
@@ -102,48 +107,29 @@ export function Footer() {
               </Stack>
             </Box> */}
           </Stack>
-        </Stack>
-        <Stack
-            direction={{ xs: "column", sm: "row" }}
-            justifyContent="space-between"
-            alignItems={{ xs: "flex-start", sm: "center" }}
-            spacing={{ xs: 0.5, sm: 0 }}
+          <Typography
+            variant="body2"
             sx={{
-              mt: 4,
+              color: theme.palette.text.secondary,
+              alignSelf: "center",
+              order: { xs: 4, md: 0 },
             }}
           >
-             <Typography
-              variant="body2"
-              sx={{
+            © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
+          </Typography>
+          <Box sx={{ alignSelf: "center", order: { xs: 3, md: 0 } }}>
+            <Link
+              href="/privacy-policy"
+              style={{
                 color: theme.palette.text.secondary,
-                order: { xs: 2, sm: 1 },
-                pt: 1,
+                textDecoration: "none",
+                fontSize: "0.8125rem",
               }}
             >
-              © {new Date().getFullYear()} {APP_NAME}. All rights reserved.
-            </Typography>
-            <Stack
-              direction="row"
-              spacing={2}
-              sx={{
-                display: { xs: "none", sm: "flex" },
-                order: { xs: 2, sm: 2 },
-              }}
-            >
-              <Link
-                href="/privacy-policy"
-                style={{
-                  color: theme.palette.text.secondary,
-                  textDecoration: "none",
-                  fontSize: "0.8125rem",
-                }}
-                target="_blank"
-              >
-                Privacy Policy
-              </Link>
-             
-            </Stack>
-          </Stack>
+              Privacy Policy
+            </Link>
+          </Box>
+        </Box>
         {/* <Stack
           direction="row"
           justifyContent="space-between"

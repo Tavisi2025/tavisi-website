@@ -64,7 +64,6 @@ export function PageHero({
             px: 2,
             py: 1,
             borderRadius: 2,
-            letterSpacing: "0.14em",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
             border: "1px solid",
@@ -85,7 +84,6 @@ export function PageHero({
         data-hero-title
         sx={{
           fontWeight: 700,
-          letterSpacing: "-0.04em",
           maxWidth: isSplit ? 520 : 800,
           mx: isSplit ? undefined : "auto",
           color: "text.primary",

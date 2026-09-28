@@ -35,7 +35,7 @@ export function CTABand({
       }}
     >
       <Box sx={{ maxWidth: 560, mx: 'auto', position: 'relative', zIndex: 1 }}>
-        <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 700, letterSpacing: '-0.02em' }}>
+        <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 700 }}>
           {title}
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.7 }}>

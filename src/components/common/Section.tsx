@@ -70,9 +70,8 @@ export function Section({
               variant="overline"
               sx={{
                 display: "block",
-                fontSize: "0.6875rem",
+                fontSize: "0.75rem",
                 fontWeight: 600,
-                letterSpacing: "0.12em",
                 mb: 1,
                 color: "text.secondary",
               }}
@@ -86,7 +85,6 @@ export function Section({
               component="h2"
               sx={{
                 fontWeight: 700,
-                letterSpacing: "-0.03em",
                 color: "text.primary",
                 ...titleSx,
               }}

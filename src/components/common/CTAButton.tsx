@@ -27,7 +27,6 @@ export function CTAButton({
         py: size === 'large' ? 1.75 : 1.25,
         borderRadius: 10,
         fontWeight: 600,
-        letterSpacing: '0.02em',
         transition: 'transform 0.2s ease, box-shadow 0.3s ease',
         '&:hover': {
           transform: 'translateY(-2px)',

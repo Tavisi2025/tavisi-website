@@ -1,14 +1,13 @@
 export const APP_NAME = "Tavisi Partners";
 
-/** Site-wide font; set on `<html>` by `next/font` as `--font-jakarta`. */
-export const FONT_FAMILY_UI = "var(--font-jakarta)";
+/** Site-wide font (Aptos); set on `<html>` by `next/font/local` as `--font-aptos`. */
+export const FONT_FAMILY_UI = "var(--font-aptos)";
 
 export const ROUTES = [
   { path: "/", label: "Home" },
-  { path: "/about", label: "About" },
+  // { path: "/about", label: "About" },
   // { path: '/about-2', label: 'About 2' },
   { path: "/tavisi-value", label: "Tavisi Value" },
-  { path: "/tavisi-way", label: "Tavisi Way" },
   // { path: '/clients', label: 'Clients' },
   // { path: '/news', label: 'News & Resources' },
   { path: "/contact", label: "Contact" },
@@ -18,6 +17,13 @@ export const LEGAL_ROUTES = [
     { path: "/terms", label: "Terms & Conditions" },
     { path: "/privacy-policy", label: "Privacy Policy" },
 ] as const;
+
+/** Public contact details — single source for the Contact page and GetInTouchSection. */
+export const CONTACT_INFO = {
+  emails: ["tavisipartners@gmail.com", "dipankar@tavisipartners.com"],
+  phone: "1-484-664-0722",
+  address: "West Chester, PA 19382",
+} as const;
 
 export const CTA_LABEL = "Schedule a Consultation";
 export const CTA_PATH = "/contact";

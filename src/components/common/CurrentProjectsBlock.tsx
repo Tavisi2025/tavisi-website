@@ -51,7 +51,7 @@ export function CurrentProjectsBlock({ projects, title }: CurrentProjectsBlockPr
         <Typography
           variant="h2"
           component="h2"
-          sx={{ fontWeight: 700, letterSpacing: '-0.03em', color: 'text.primary', mb: 5 }}
+          sx={{ fontWeight: 700, color: 'text.primary', mb: 5 }}
         >
           {title}
         </Typography>

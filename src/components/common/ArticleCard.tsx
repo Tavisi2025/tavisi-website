@@ -55,7 +55,7 @@ export function ArticleCard({
         <Typography
           variant="overline"
           color="text.secondary"
-          sx={{ fontSize: '0.6875rem', letterSpacing: '0.1em', fontWeight: 600 }}
+          sx={{ fontSize: '0.75rem', fontWeight: 600 }}
         >
           {publishDate}
         </Typography>
